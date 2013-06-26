@@ -43,9 +43,9 @@ public class BookmarkControl implements Bookmark {
 		LABEL_UNLABELLED.setName(BibleApplication.getApplication().getString(R.string.label_unlabelled));
 		LABEL_UNLABELLED.setId(Long.valueOf(-998));
 	}
-	
+
 	private static final String TAG = "BookmarkControl";
-	
+
 	@Override
 	public boolean bookmarkCurrentVerse() {
 		boolean bOk = false;
@@ -270,10 +270,9 @@ public class BookmarkControl implements Bookmark {
 
 	@Override
 	public List<LabelDto> getAllLabels() {
-		List<LabelDto> labelList = new ArrayList<LabelDto>();
-
-		labelList = getAssignableLabels();
-		Collections.sort(labelList);
+		List<LabelDto> labelList;
+        labelList = getAssignableLabels();
+        Collections.sort(labelList);
 		
 		// add special label that is automatically associated with all-bookmarks
 		labelList.add(0, LABEL_UNLABELLED);
@@ -319,16 +318,9 @@ public class BookmarkControl implements Bookmark {
 			Versification requiredVersification = firstVerse.getVersification();
 			for (BookmarkDto bookmarkDto : bookmarkList) {
 				Verse verse = bookmarkDto.getVerse(requiredVersification);
-				//TODO should not require VerseRange cast but bug in JSword
-				if (isVerseRange) {
-					if (((VerseRange)passage).contains(verse)) {
-						versesInPassage.add(verse);
-					}
-				} else {
-					if (passage.contains(verse)) {
-						versesInPassage.add(verse);
-					}
-				}
+                if (passage.contains(verse)) {
+                    versesInPassage.add(verse);
+                }
 			}
 		}
 

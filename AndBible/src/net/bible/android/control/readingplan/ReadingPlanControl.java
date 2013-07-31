@@ -106,8 +106,7 @@ public class ReadingPlanControl {
 	public int getCurrentPlanDay() {
 		String planCode = getCurrentPlanCode();
 		SharedPreferences prefs = CommonUtils.getSharedPreferences();
-		int day = prefs.getInt(planCode+READING_PLAN_DAY_EXT, 1);
-		return day;
+		return prefs.getInt(planCode+READING_PLAN_DAY_EXT, 1);
 	}
 	private void setCurrentPlanDay(int day) {
 		String planCode = getCurrentPlanCode();
@@ -213,6 +212,7 @@ public class ReadingPlanControl {
 	 */
 	public void read(int day, int readingNo, Key readingKey) {
     	if (readingKey!=null) {
+            Log.d(TAG, "Daily Reading goto:"+readingKey);
     		// mark reading as 'read'
     		getReadingStatus(day).setRead(readingNo);
 
@@ -288,7 +288,6 @@ public class ReadingPlanControl {
 	 */
 	private String getCurrentPlanCode() {
 		SharedPreferences prefs = CommonUtils.getSharedPreferences();
-		String currentPlan = prefs.getString(READING_PLAN, null);
-		return currentPlan;
+		return prefs.getString(READING_PLAN, null);
 	}
 }

@@ -7,6 +7,7 @@ import net.bible.service.sword.SwordDocumentFacade;
 
 import org.crosswire.jsword.book.Book;
 import org.crosswire.jsword.book.BookFilters;
+import org.crosswire.jsword.book.Books;
 import org.crosswire.jsword.book.Defaults;
 import org.crosswire.jsword.bridge.BookInstaller;
 
@@ -101,6 +102,13 @@ public class DownloadTest extends TestCase {
 	public void testDownloadJubilee2000() throws Exception {
 		SwordDocumentFacade.getInstance().downloadDocument(getBook("Jubilee2000"));
 		System.out.println("finished");
+	}
+
+	public void testDownloadTurNTB() throws Exception {
+		if (Books.installed().getBook("TurNTB")==null) {
+			SwordDocumentFacade.getInstance().downloadDocument(getBook("TurNTB"));
+			System.out.println("finished");
+		}
 	}
 
 	public void testDownloadJosephus() throws Exception {
